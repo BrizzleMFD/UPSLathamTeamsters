@@ -1,0 +1,19 @@
+/* 1. Standard Reset: Removes default browser spacing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Makes width/height easier to calculate */
+}
+
+/* 2. Basic Setup: Ensures the body covers the full screen */
+body {
+    min-height: 100vh;
+    line-height: 1.5;
+    font-family: sans-serif;
+}
+
+/* 3. Responsive Images */
+img {
+    max-width: 100%;
+    display: block;
+}
