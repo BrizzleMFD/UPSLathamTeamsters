@@ -17,3 +17,17 @@ img {
     max-width: 100%;
     display: block;
 }
+
+css
+/* Default light mode */
+body {
+  background-color: white;
+  color: black;
+}
+/* Dark mode for browsers/OS setting dark mode */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #222;
+    color: #ddd;
+  }
+}
