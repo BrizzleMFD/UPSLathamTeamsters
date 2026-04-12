@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Driver Seniority Table</title>
+<!-- DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"/>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    background-color: #f9f9f9;
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  table.dataTable thead th {
+    background-color: #e2e2e2;
+  }
+</style>
+</head>
+<body>
+<h2>Driver Seniority List</h2>
+<table id="seniorityTable" class="display" style="width:100%">
+  <thead>
+    <tr>
+      <th>Driver Seniority</th>
+      <th>Driver</th>
+      <th>FT Seniority Date</th>
+      <th>Route</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Data will be injected here by JavaScript -->
+  </tbody>
+</table>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script>
+  const data = [
+    {"Driver Seniority":1,"Driver":"Burkhard","FT Seniority Date":"August 10, 2000","Route":"26A"},
+    {"Driver Seniority":2,"Driver":"Rendo","FT Seniority Date":"August 15, 2000","Route":"13B"},
+    {"Driver Seniority":3,"Driver":"Hickey","FT Seniority Date":"August 15, 2000","Route":"3B"},
+    {"Driver Seniority":4,"Driver":"Allen","FT Seniority Date":"August 21, 2000","Route":"5A"},
+    {"Driver Seniority":5,"Driver":"Nadareski","FT Seniority Date":"August 13, 2001","Route":"5Z"},
+    {"Driver Seniority":6,"Driver":"Cavallaro","FT Seniority Date":"February 11, 2002","Route":"25D"},
+    {"Driver Seniority":7,"Driver":"Marshall","FT Seniority Date":"August 3, 2002","Route":"25X"},
+    {"Driver Seniority":8,"Driver":"Jeffs","FT Seniority Date":"August 1, 2005","Route":"25E"},
+    {"Driver Seniority":9,"Driver":"McCann","FT Seniority Date":"March 7, 2006","Route":"31C"},
+    {"Driver Seniority":10,"Driver":"Otty","FT Seniority Date":"April 28, 2006","Route":"21X"},
+    {"Driver Seniority":11,"Driver":"Brenes","FT Seniority Date":"August 24, 2006","Route":"25A"},
+    {"Driver Seniority":12,"Driver":"Groff","FT Seniority Date":"August 20, 2007","Route":"31E"},
+    {"Driver Seniority":13,"Driver":"Bayer","FT Seniority Date":"November 1, 2007","Route":"26C"},
+    {"Driver Seniority":14,"Driver":"Marchese","FT Seniority Date":"September 19, 2011","Route":"14F"},
+    {"Driver Seniority":15,"Driver":"Malloy","FT Seniority Date":"January 5, 2012","Route":"23B"},
+    {"Driver Seniority":16,"Driver":"Rawls","FT Seniority Date":"January 4, 2013","Route":"25Y"},
+    {"Driver Seniority":17,"Driver":"Anthony","FT Seniority Date":"April 25, 2014","Route":"29B"},
+    {"Driver Seniority":18,"Driver":"Bobersky","FT Seniority Date":"May 1, 2014","Route":"21E"},
+    {"Driver Seniority":19,"Driver":"Dolan","FT Seniority Date":"July 25, 2014","Route":"14C"},
+    {"Driver Seniority":20,"Driver":"Ieronimo","FT Seniority Date":"November 25, 2014","Route":"6A"},
+    {"Driver Seniority":21,"Driver":"Alesio","FT Seniority Date":"December 31, 2014","Route":"13A"},
+    {"Driver Seniority":22,"Driver":"Keefe","FT Seniority Date":"January 22, 2015","Route":"15B"},
+    {"Driver Seniority":23,"Driver":"Fitzpatrick","FT Seniority Date":"June 8, 2015","Route":"28B"},
+    {"Driver Seniority":24,"Driver":"Kelly","FT Seniority Date":"September 4, 2015","Route":"23C"},
+    {"Driver Seniority":25,"Driver":"Dodge","FT Seniority Date":"September 24, 2015","Route":"4A"},
+    {"Driver Seniority":26,"Driver":"Farnan","FT Seniority Date":"December 3, 2015","Route":"23A"},
+    {"Driver Seniority":27,"Driver":"Cummings","FT Seniority Date":"July 5, 2016","Route":"26E"},
+    {"Driver Seniority":28,"Driver":"Campbell N.","FT Seniority Date":"October 7, 2016","Route":"24X"},
+    {"Driver Seniority":29,"Driver":"Campbell M.","FT Seniority Date":"October 5, 2016","Route":"22X"},
+    {"Driver Seniority":30,"Driver":"Garcia","FT Seniority Date":"October 15, 2016","Route":"19A"},
+    {"Driver Seniority":31,"Driver":"Haley","FT Seniority Date":"October 9, 2016","Route":"19B"},
+    {"Driver Seniority":32,"Driver":"Jirka","FT Seniority Date":"October 16, 2017","Route":"26B"},
+    {"Driver Seniority":33,"Driver":"Gannon","FT Seniority Date":"July 18, 2018","Route":"29Y"},
+    {"Driver Seniority":34,"Driver":"Fineran","FT Seniority Date":"January 24, 2014","Route":"25F"},
+    {"Driver Seniority":35,"Driver":"Kellman","FT Seniority Date":"July 23, 2018","Route":"3C"},
+    {"Driver Seniority":36,"Driver":"Kilmartin","FT Seniority Date":"July 25, 2018","Route":"29A"},
+    {"Driver Seniority":37,"Driver":"Mahoney","FT Seniority Date":"July 29, 2018","Route":"ADI"},
+    {"Driver Seniority":38,"Driver":"Hughes","FT Seniority Date":"May 6, 2019","Route":"3A"},
+    {"Driver Seniority":39,"Driver":"Maura","FT Seniority Date":"May 7, 2019","Route":"25B"},
+    {"Driver Seniority":40,"Driver":"Cami","FT Seniority Date":"May 12, 2019","Route":"5B"},
+    {"Driver Seniority":41,"Driver":"Vasquez","FT Seniority Date":"May 14, 2019","Route":"22G"},
+    {"Driver Seniority":42,"Driver":"Campbell J.","FT Seniority Date":"June 28, 2019","Route":"23X"},
+    {"Driver Seniority":43,"Driver":"Belanger","FT Seniority Date":"September 3, 2019","Route":"16A"},
+    {"Driver Seniority":44,"Driver":"Mora","FT Seniority Date":"October 19, 2019","Route":"4B"},
+    {"Driver Seniority":45,"Driver":"Purtell","FT Seniority Date":"October 23, 2019","Route":"29C"},
+    {"Driver Seniority":46,"Driver":"Dambrosio","FT Seniority Date":"October 29, 2019","Route":"14E"},
+    {"Driver Seniority":47,"Driver":"Sala","FT Seniority Date":"October 30, 2019","Route":"4C"},
+    {"Driver Seniority":48,"Driver":"Beidl","FT Seniority Date":"November 1, 2019","Route":"5Y"},
+    {"Driver Seniority":49,"Driver":"Bilyk","FT Seniority Date":"November 5, 2019","Route":"13C"},
+    {"Driver Seniority":50,"Driver":"Plue","FT Seniority Date":"November 11, 2019","Route":"22C"},
+    {"Driver Seniority":51,"Driver":"Brawner","FT Seniority Date":"November 14, 2019","Route":"24A"},
+    {"Driver Seniority":52,"Driver":"Wright","FT Seniority Date":"April 1, 2020","Route":"21D"},
+    {"Driver Seniority":53,"Driver":"Woods","FT Seniority Date":"April 2, 2020","Route":"21B"},
+    {"Driver Seniority":54,"Driver":"Hyde E.","FT Seniority Date":"April 3, 2020","Route":"13D"},
+    {"Driver Seniority":55,"Driver":"Nazzaro","FT Seniority Date":"April 4, 2020","Route":"15D"},
+    {"Driver Seniority":56,"Driver":"Arneson","FT Seniority Date":"April 8, 2020","Route":"24C"},
+    {"Driver Seniority":57,"Driver":"Hopkins J.","FT Seniority Date":"April 9, 2020","Route":"22B"},
+    {"Driver Seniority":58,"Driver":"Audi","FT Seniority Date":"April 11, 2020","Route":"3X"},
+    {"Driver Seniority":59,"Driver":"Persaud W.","FT Seniority Date":"April 14, 2020","Route":"31B"},
+    {"Driver Seniority":60,"Driver":"Unser","FT Seniority Date":"April 18, 2020","Route":"16C"},
+    {"Driver Seniority":61,"Driver":"Hopkins S.","FT Seniority Date":"April 22, 2020","Route":"22A"},
+    {"Driver Seniority":62,"Driver":"Shortis","FT Seniority Date":"April 24, 2020","Route":"24B"},
+    {"Driver Seniority":63,"Driver":"Rodd","FT Seniority Date":"April 25, 2020","Route":"16B"},
+    {"Driver Seniority":64,"Driver":"Meisner","FT Seniority Date":"September 4, 2020","Route":"6C"},
+    {"Driver Seniority":65,"Driver":"Hyde G.","FT Seniority Date":"September 8, 2020","Route":"2A"},
+    {"Driver Seniority":66,"Driver":"Catanzaro","FT Seniority Date":"September 10, 2020","Route":"21A"},
+    {"Driver Seniority":67,"Driver":"Ricci","FT Seniority Date":"September 11, 2020","Route":"6B"},
+    {"Driver Seniority":68,"Driver":"Messemer","FT Seniority Date":"September 14, 2020","Route":"14A"},
+    {"Driver Seniority":69,"Driver":"Maglosky","FT Seniority Date":"September 17, 2020","Route":"7X"},
+    {"Driver Seniority":70,"Driver":"Gray","FT Seniority Date":"October 1, 2020","Route":"2X"},
+    {"Driver Seniority":71,"Driver":"Hobbins","FT Seniority Date":"November 16, 2020","Route":"14B"},
+    {"Driver Seniority":72,"Driver":"Davis","FT Seniority Date":"March 22, 2021","Route":"15A"},
+    {"Driver Seniority":73,"Driver":"Broadus","FT Seniority Date":"March 31, 2021","Route":"13E"},
+    {"Driver Seniority":74,"Driver":"Bevilaqua","FT Seniority Date":"April 18, 2021","Route":"6E"},
+    {"Driver Seniority":75,"Driver":"Mokhiber","FT Seniority Date":"April 25, 2021","Route":"21C"},
+    {"Driver Seniority":76,"Driver":"Ali","FT Seniority Date":"August 7, 2021","Route":"6F"},
+    {"Driver Seniority":77,"Driver":"Diaz","FT Seniority Date":"August 16, 2021","Route":"T-S Cover"},
+    {"Driver Seniority":78,"Driver":"Morales","FT Seniority Date":"August 17, 2021","Route":"31A"},
+    {"Driver Seniority":79,"Driver":"Casey","FT Seniority Date":"August 14, 2021","Route":"2B"},
+    {"Driver Seniority":80,"Driver":"MacMurray","FT Seniority Date":"September 26, 2021","Route":"T-S Cover"},
+    {"Driver Seniority":81,"Driver":"Lopez","FT Seniority Date":"September 30, 2021","Route":"28X"},
+    {"Driver Seniority":82,"Driver":"Wilson","FT Seniority Date":"October 1, 2021","Route":"T-S Cover"},
+    {"Driver Seniority":83,"Driver":"Baker","FT Seniority Date":"October 2, 2021","Route":"13F"},
+    {"Driver Seniority":84,"Driver":"VanAller","FT Seniority Date":"October 3, 2021","Route":"30X"},
+    {"Driver Seniority":85,"Driver":"Violette","FT Seniority Date":"February 7, 2022","Route":"4D"},
+    {"Driver Seniority":86,"Driver":"Kane","FT Seniority Date":"February 8, 2022","Route":"6D"},
+    {"Driver Seniority":87,"Driver":"Boyer","FT Seniority Date":"February 11, 2022","Route":"3D"},
+    {"Driver Seniority":88,"Driver":"Terry","FT Seniority Date":"February 14, 2022","Route":"27B"},
+    {"Driver Seniority":89,"Driver":"Kreplin","FT Seniority Date":"February 15, 2022","Route":"T-S Cover"},
+    {"Driver Seniority":90,"Driver":"McCarty","FT Seniority Date":"February 18, 2022","Route":"32C"},
+    {"Driver Seniority":91,"Driver":"Ratigan","FT Seniority Date":"February 20, 2022","Route":"32B"},
+    {"Driver Seniority":92,"Driver":"McGrath","FT Seniority Date":"October 16, 2022","Route":"T-S Cover"},
+    {"Driver Seniority":93,"Driver":"Damore","FT Seniority Date":"April 8, 2021","Route":""},
+    {"Driver Seniority":94,"Driver":"Huba","FT Seniority Date":"April 9, 2021","Route":""},
+    {"Driver Seniority":95,"Driver":"Johnson","FT Seniority Date":"June 16, 2021","Route":""},
+    {"Driver Seniority":96,"Driver":"O’Connell","FT Seniority Date":"October 8, 2007","Route":""},
+    {"Driver Seniority":97,"Driver":"Hagglove","FT Seniority Date":"October 31, 2011","Route":""},
+    {"Driver Seniority":98,"Driver":"Roden","FT Seniority Date":"June 20, 2016","Route":""},
+    {"Driver Seniority":99,"Driver":"King","FT Seniority Date":"April 27, 2020","Route":""},
+    {"Driver Seniority":100,"Driver":"Thorpe","FT Seniority Date":"September 12, 2020","Route":""},
+    {"Driver Seniority":101,"Driver":"Downey","FT Seniority Date":"April 15, 2021","Route":""},
+    {"Driver Seniority":102,"Driver":"Badger","FT Seniority Date":"February 21, 2022","Route":""},
+    {"Driver Seniority":103,"Driver":"Morgan","FT Seniority Date":"October 19, 2022","Route":""},
+    {"Driver Seniority":104,"Driver":"Lee","FT Seniority Date":"August 10, 2024","Route":""},
+    {"Driver Seniority":105,"Driver":"Madera-Puig","FT Seniority Date":"August 14, 2024","Route":""},
+    {"Driver Seniority":106,"Driver":"Arnias","FT Seniority Date":"August 24, 2024","Route":""},
+    {"Driver Seniority":107,"Driver":"Darling","FT Seniority Date":"August 24, 2024","Route":""},
+    {"Driver Seniority":108,"Driver":"Brown","FT Seniority Date":"August 27, 2024","Route":""},
+    {"Driver Seniority":109,"Driver":"Howard","FT Seniority Date":"August 28, 2024","Route":""},
+    {"Driver Seniority":110,"Driver":"Khaimraj","FT Seniority Date":"August 29, 2024","Route":""},
+    {"Driver Seniority":111,"Driver":"Mitchell","FT Seniority Date":"September 1, 2024","Route":""},
+    {"Driver Seniority":112,"Driver":"Barthelmas","FT Seniority Date":"September 25, 2024","Route":""}
+  ];
+
+  $(document).ready(function() {
+    $('#seniorityTable').DataTable({
+      data: data,
+      columns: [
+        { data: 'Driver Seniority' },
+        { data: 'Driver' },
+        { data: 'FT Seniority Date' },
+        { data: 'Route' }
+      ],
+      responsive: true,
+      pageLength: 25,
+      order: [[0, 'asc']],
+      language: {
+        search: "Search:",
+        lengthMenu: "Show _MENU_ entries",
+        info: "Showing _START_ to _END_ of _TOTAL_ entries",
+        paginate: {
+          first: "First",
+          last: "Last",
+          next: "Next",
+          previous: "Previous"
+        },
+      }
+    });
+  });
+</script>
+</body>
+</html>
