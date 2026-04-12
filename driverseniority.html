@@ -10,6 +10,15 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"/>
 </head>
 <body>
+
+<div class="header">
+    <div class="menu" onclick="toggleMenu()">☰</div>
+</div>
+
+<div id="menuLinks" style="display:none; position: absolute; top: 50px; left: 10px; background-color: #fff; border: 1px solid #ccc; padding: 10px; border-radius: 4px;">
+    <a href="driverseniority.html">Driver Seniority List</a><br>
+    <a href="contract-rights.html">Contract Rights</a>
+</div>
 <h2>Driver Seniority List</h2>
 <table id="seniorityTable" class="display" style="width:100%">
   <thead>
@@ -170,6 +179,16 @@
       }
     });
   });
+</script>
+<script>
+function toggleMenu() {
+    const menu = document.getElementById('menuLinks');
+    if (menu.style.display === 'none') {
+        menu.style.display = 'block';
+    } else {
+        menu.style.display = 'none';
+    }
+}
 </script>
 </body>
 </html>
