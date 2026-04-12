@@ -21,7 +21,7 @@ img {
 /* Default light mode */
 body {
   background-color: white;
-  color: white;
+  color: black;
 }
 /* Dark mode for browsers/OS setting dark mode */
 @media (prefers-color-scheme: dark) {
